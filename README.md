@@ -1,3 +1,3 @@
-# ASPP2021_Day2_VT
+# ASPP2021_VT
 
-Repo for solutions to day 2 exercise in Advanced scientific programming with python@UU.
+Repo for solutions to the exercises in Advanced scientific programming with python@UU.
