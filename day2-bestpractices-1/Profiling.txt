@@ -1,0 +1,157 @@
+
+3a) 
+Would start optimizing the iteration over two matrices for the actual multiplication which takes a horrendous amount of time.
+
+Total time on first unoptimized run with line_profiler: 104.35 s
+
+Timer unit: 1e-06 s
+
+Total time: 104.35 s
+File: matmult.py
+Function: matmult at line 7
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     7                                           @profile
+     8                                           def matmult(N=250):
+     9         1          5.0      5.0      0.0      X = []
+    10       251        840.0      3.3      0.0      for i in range(N):
+    11       250     720996.0   2884.0      0.7          X.append([random.randint(0,100) for r in range(N)])
+    12                                           
+    13                                           # Nx(N+1) matrix
+    14         1          8.0      8.0      0.0      Y = []
+    15       251        859.0      3.4      0.0      for i in range(N):
+    16       250     730059.0   2920.2      0.7          Y.append([random.randint(0,100) for r in range(N+1)])
+    17                                           
+    18                                           # result is Nx(N+1)
+    19         1          3.0      3.0      0.0      result = []
+    20       251        815.0      3.2      0.0      for i in range(N):
+    21       250       1500.0      6.0      0.0          result.append([0] * (N+1))
+    22                                           
+    23                                           # iterate through rows of X
+    24       251        719.0      2.9      0.0      for i in range(len(X)):
+    25                                               # iterate through columns of Y
+    26     63000     180693.0      2.9      0.2          for j in range(len(Y[0])):
+    27                                                   # iterate through rows of Y
+    28  15750250   45422676.0      2.9     43.5              for k in range(len(Y)):
+    29  15687500   57214360.0      3.6     54.8                  result[i][j] += X[i][k] * Y[k][j]
+    30                                           
+    31       251       1041.0      4.1      0.0      for r in result:
+    32       250      75319.0    301.3      0.1          print(r)
+
+Memory profiling:
+
+Filename: matmult.py
+
+Line #    Mem usage    Increment  Occurences   Line Contents
+============================================================
+     7   38.148 MiB   38.148 MiB           1   @profile
+     8                                         def matmult(N=250):
+     9   38.148 MiB    0.000 MiB           1       X = []
+    10   38.148 MiB    0.000 MiB         151       for i in range(N):
+    11   38.148 MiB    0.000 MiB       22950           X.append([random.randint(0,100) for r in range(N)])
+    12                                         # Nx(N+1) matrix
+    13   38.148 MiB    0.000 MiB           1       Y = []
+    14   38.344 MiB    0.000 MiB         151       for i in range(N):
+    15   38.344 MiB    0.195 MiB       23100           Y.append([random.randint(0,100) for r in range(N+1)])
+    16                                         
+    17                                         # result is Nx(N+1)
+    18   38.344 MiB    0.000 MiB           1       result = []
+    19   38.602 MiB    0.000 MiB         151       for i in range(N):
+    20   38.602 MiB    0.258 MiB         150           result.append([0] * (N+1))
+    21                                         
+    22                                         # iterate through rows of X
+    23   39.215 MiB    0.000 MiB         151       for i in range(len(X)):
+    24                                             # iterate through columns of Y
+    25   39.215 MiB    0.000 MiB       22800           for j in range(len(Y[0])):
+    26                                                 # iterate through rows of Y
+    27   39.215 MiB    0.613 MiB     3420150               for k in range(len(Y)):
+    28   39.215 MiB    0.000 MiB     3397500                   result[i][j] += X[i][k] * Y[k][j]
+    29                                         
+    30   39.215 MiB    0.000 MiB         151       for r in result:
+    31   39.215 MiB    0.000 MiB         150           print(r)
+
+
+3 c) 
+
+Switching the matrix multiplication operation for numpy.matmul I get
+Total time: 2.90371 s
+File: matmult_optim.py
+Function: matmult at line 8
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     8                                           @profile
+     9                                           def matmult(N=250):
+    10         1          5.0      5.0      0.0      X = []
+    11                                               #X = np.empty([N,N])
+    12       251        836.0      3.3      0.0      for i in range(N):
+    13       250     736634.0   2946.5     25.4          X.append([random.randint(0,100) for r in range(N)])
+    14                                           # Nx(N+1) matrix
+    15         1          4.0      4.0      0.0      Y = []
+    16       251        837.0      3.3      0.0      for i in range(N):
+    17       250     737629.0   2950.5     25.4          Y.append([random.randint(0,100) for r in range(N+1)])
+    18                                           
+    19         1       8404.0   8404.0      0.3      np_X = np.array(X)
+    20         1       8491.0   8491.0      0.3      np_Y = np.array(Y)
+    21         1      80109.0  80109.0      2.8      result = np.matmul(X,Y)
+    22                                           
+    23                                           # result is Nx(N+1)
+    24                                               #result = []
+    25                                               #for i in range(N):
+    26                                                   #result.append([0] * (N+1))
+    27                                           
+    28                                           # iterate through rows of X
+    29                                               #for i in range(len(X)):
+    30                                               # iterate through columns of Y
+    31                                                   #for j in range(len(Y[0])):
+    32                                                   # iterate through rows of Y
+    33                                                       #for k in range(len(Y)):
+    34                                                           #result[i][j] += X[i][k] * Y[k][j]
+    35                                           
+    36       251       1327.0      5.3      0.0      for r in result:
+    37       250    1329436.0   5317.7     45.8          print(r)
+
+By also creating the random matrices using the size argument to numpys randint, I reduce the time to. Most of the remaining time is spent on printing the results.
+
+Timer unit: 1e-06 s
+
+Total time: 1.42376 s
+File: matmult_optim.py
+Function: matmult at line 8
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     8                                           @profile
+     9                                           def matmult(N=250):
+    10                                               #X = []
+    11                                               #X = np.empty([N,N])
+    12                                               #for i in range(N):
+    13                                               #    X.append([random.randint(0,100) for r in range(N)])
+    14         1       1382.0   1382.0      0.1      X = np.random.randint(0,100, size=(N,N))
+    15                                           # Nx(N+1) matrix
+    16                                               #Y = []
+    17                                               #for i in range(N):
+    18                                               #    Y.append([random.randint(0,100) for r in range(N+1)])
+    19         1       1372.0   1372.0      0.1      Y = np.random.randint(0,100, size=(N,N+1))
+    20                                           
+    21         1        423.0    423.0      0.0      np_X = np.array(X)
+    22         1        418.0    418.0      0.0      np_Y = np.array(Y)
+    23         1      62950.0  62950.0      4.4      result = np.matmul(X,Y)
+    24                                           
+    25                                           # result is Nx(N+1)
+    26                                               #result = []
+    27                                               #for i in range(N):
+    28                                                   #result.append([0] * (N+1))
+    29                                           
+    30                                           # iterate through rows of X
+    31                                               #for i in range(len(X)):
+    32                                               # iterate through columns of Y
+    33                                                   #for j in range(len(Y[0])):
+    34                                                   # iterate through rows of Y
+    35                                                       #for k in range(len(Y)):
+    36                                                           #result[i][j] += X[i][k] * Y[k][j]
+    37                                           
+    38       251       1275.0      5.1      0.1      for r in result:
+    39       250    1355940.0   5423.8     95.2          print(r)
+
