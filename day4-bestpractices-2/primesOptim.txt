@@ -1,0 +1,5 @@
+
+$ python3.7 -m timeit "import primes; primes.primes(2000)"
+1 loop, best of 5: 382 msec per loop
+$ python3.7 -m timeit "import cy_primes; cy_primes.primes(2000)"
+100 loops, best of 5: 3.92 msec per loop
