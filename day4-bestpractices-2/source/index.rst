@@ -13,6 +13,7 @@ Welcome to SimpleMath's documentation!
 .. automodule:: simple_math
    :members:
 
+   index
 
 Indices and tables
 ==================
