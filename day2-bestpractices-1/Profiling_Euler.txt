@@ -76,7 +76,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     70         1         99.0     99.0      0.0      print(fraq)
 
 
-Most time is spent inside 'factorize' where, in turn, the time is divided pretty evenly between lines 25, 26 and 29. But can these 
+Most time is spent inside 'factorize' where, in turn, the time is divided pretty evenly between lines 25, 26 and 29. 
 
 Memory profile:
 
