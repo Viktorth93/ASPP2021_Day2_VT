@@ -1,6 +1,6 @@
 
 3a) 
-Would start optimizing the iteration over two matrices for the actual multiplication which takes a horrendous amount of time.
+Would start optimizing the iteration over two matrices for the actual multiplication (Line 29) which takes a horrendous amount of time.
 
 Total time on first unoptimized run with line_profiler: 104.35 s
 
@@ -40,6 +40,8 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     32       250      75319.0    301.3      0.1          print(r)
 
 Memory profiling:
+
+Lines 15, 20 and 27 create a measureable amount of memory. Line 27 creates the most.
 
 Filename: matmult.py
 
