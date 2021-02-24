@@ -1,2 +1,3 @@
-# day2-bestpractices-1
-Lecture notes and code examples for Day 2: Best practices 1
+# Exercise solutions for day2
+
+Exercise 1: Solutions are found in the directory "animals"
