@@ -76,7 +76,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     70         1         99.0     99.0      0.0      print(fraq)
 
 
-Most time is spent inside 'factorize' where, in turn, the time is divided pretty evenly between lines 25, 26 and 29. 
+Most time is spent inside 'factorize' where, in turn, the time is divided pretty evenly between lines 25, 26 and 29, so I would start trying to optimize there. 
 
 Memory profile:
 
@@ -153,4 +153,4 @@ Line #    Mem usage    Increment   Line Contents
     70   14.465 MiB    0.000 MiB       print(fraq)
  
 
-So clearly the 'range' commands add the most memory
+So clearly the 'range' command (Line 67) add the most memory.
