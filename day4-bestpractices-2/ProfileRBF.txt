@@ -1,0 +1,59 @@
+
+Question 1
+
+ b)
+I tried using both the built in timer and lineprofiler (see output below).The two methods differ somewhat, but scipy is something like 150-250 times faster.
+
+c) As with the matrix multiplication example from before, the nested loops over the matrices really slow things down in plain python. We can also note that line 17, where two matrix elements have to be accessed twice is where most time is spent. Scipy is faster because it uses optimized methods for such operations, and profits from being built on compiled C-code where array access is much faster.
+
+
+Python:  99.77837705612183
+Scipy:  0.3949720859527588
+Wrote profile results to rbf.py.lprof
+Timer unit: 1e-06 s
+
+Total time: 58.9586 s
+File: rbf.py
+Function: rbf_network at line 6
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     6                                           @profile
+     7                                           def rbf_network(X, beta, theta):
+     8                                           
+     9         1          9.0      9.0      0.0      N = X.shape[0]
+    10         1          5.0      5.0      0.0      D = X.shape[1]
+    11         1         14.0     14.0      0.0      Y = np.zeros(N)
+    12                                           
+    13      1001       2812.0      2.8      0.0      for i in range(N):
+    14   1001000    2999277.0      3.0      5.1          for j in range(N):
+    15   1000000    2873674.0      2.9      4.9              r = 0
+    16   6000000   18205080.0      3.0     30.9              for d in range(D):
+    17   5000000   25031517.0      5.0     42.5                  r += (X[j, d] - X[i, d]) ** 2
+    18   1000000    3543111.0      3.5      6.0              r = r**0.5
+    19   1000000    6303087.0      6.3     10.7              Y[i] += beta[j] * exp(-(r * theta)**2)
+    20                                           
+    21         1          3.0      3.0      0.0      return Y
+
+Total time: 0.394911 s
+File: rbf.py
+Function: rbf_scipy at line 24
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    24                                           @profile
+    25                                           def rbf_scipy(X, beta):
+    26                                           
+    27         1          6.0      6.0      0.0      N = X.shape[0]
+    28         1          4.0      4.0      0.0      D = X.shape[1]    
+    29         1     338463.0 338463.0     85.7      rbf = Rbf(X[:,0], X[:,1], X[:,2], X[:,3], X[:, 4], beta)
+    30                                               #Xtuple = tuple([X[:, i] for i in range(D)])
+    31         1         29.0     29.0      0.0      Xtuple = tuple([X[:, i] for i in range(D)])
+    32                                           
+    33         1      56409.0  56409.0     14.3      return rbf(*Xtuple)
+
+d) Using cython, I managed to improve the speed of the of the original rbf_network function by about a factor of three:
+Python:  9.927096128463745
+Scipy:  0.1619091033935547
+Cython:  3.0914840698242188
+
