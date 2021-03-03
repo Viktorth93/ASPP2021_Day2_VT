@@ -10,41 +10,42 @@ from array import array
 
 
 
-fileList = ["BDTPreds.csv", "MLPPreds.csv", "kNNPreds.csv"]
+file_list = ["BDTPreds.csv", "MLPPreds.csv", "kNNPreds.csv"]
 
-def Stacker(fileList, includeSignal=True, includeBG=True, outName="StackedPreds.csv"):
+def Stacker(file_list, include_signal=True, include_bg=True, outname="StackedPreds.csv"):
      """ Builds combined dataframe from output of several models.
 
      Parameters
      ----------
-     fileList : list of str
+     file_list : list of str
         List of names of files containing input data.
-     includeSignal : bool
+     include_signal : bool
         Controls whether signal events are included in output dataframe. Default is true/yes.
-     includeBG : bool
+     include_bg : bool
         Controls whether bg events are included in output dataframe. Default is true/yes.
-     outName : str
+     outname : str
         Name of output file. Default is StackedPreds.csv
 
 
 
      """
-     comb_DF = pd.DataFrame()
-     for f in fileList:
-        temp_DF = pd.read_csv(f)
-        comb_DF = pd.concat([comb_DF, temp_DF], axis=1)
+     comb_df = pd.DataFrame()
+     for f in file_list:
+        temp_df = pd.read_csv(f)
+        comb_df = pd.concat([comb_df, temp_df], axis=1)
 
-     comb_DF = comb_DF.loc[:,~comb_DF.columns.duplicated()]
-     if (not includeSignal): 
-         comb_DF = comb_DF[comb_DF.label != 1].reset_index()
-     if (not includeBG): 
-         comb_DF = comb_DF[comb_DF.label != 0].reset_index()
+     comb_df = comb_df.loc[:,~comb_df.columns.duplicated()]
+     if (not include_signal): 
+         comb_df = comb_df[comb_df.label != 1].reset_index()
+     if (not include_bg): 
+         comb_df = comb_df[comb_df.label != 0].reset_index()
 
-     print(comb_DF)
+     print(comb_df)
      
-     comb_DF.to_csv("StackedPreds.csv",index=False)
+     comb_df.to_csv(outname,index=False)
    
 
 
 
-Stacker(fileList, includeSignal = False)
+#Stacker(file_list, include_signal = False)
+Stacker(file_list)

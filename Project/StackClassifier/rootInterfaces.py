@@ -2,10 +2,11 @@ import uproot
 import pandas as pd 
 import ROOT
 from array import array
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import numpy as np
 
-def dataLoader(sigName, bgName, dataName, treeName, features, sig_size, bg_size):
+def data_loader(sigName, bgName, dataName, treeName, features, sig_size, bg_size):
    """ Load data from root trees into pandas dataframes.
 
    Reads root trees (a common data format in high energy and nuclear physics) and turns them into pandas dataframes for ease of use in machinelearning.
@@ -67,7 +68,7 @@ def dataLoader(sigName, bgName, dataName, treeName, features, sig_size, bg_size)
 
 
 
-def predOutputRoot(preds, inName, treeName, outName):
+def pred_output_root(preds, inName, treeName, outName):
 
    dataFile_local = ROOT.TFile.Open(inName)
    datTree = dataFile_local.Get(treeName)
@@ -90,7 +91,7 @@ def predOutputRoot(preds, inName, treeName, outName):
 
    
 
-def featureOutputRoot(ep_px, ep_py, ep_pz, ep_e, em_px, em_py,em_pz, em_e, m2e, inFile, outFile, treeName):
+def feature_output_root(ep_px, ep_py, ep_pz, ep_e, em_px, em_py,em_pz, em_e, m2e, inFile, outFile, treeName):
     dataFile_in = ROOT.TFile.Open(inFile)
     dataTree_in = dataFile_in.Get(treeName)
 
@@ -141,7 +142,7 @@ def featureOutputRoot(ep_px, ep_py, ep_pz, ep_e, em_px, em_py,em_pz, em_e, m2e, 
     dataFile_out.Close()
 
     
-def tfDataSetMaker(sigFileName, bgFileName, treeName, features,size, batch_size, training_portion):
+def tf_dataset_maker(sigFileName, bgFileName, treeName, features,size, batch_size, training_portion):
    # Load data from root trees into suitable format for sklearn analysis
    
    sigFile = uproot.open(sigFileName)
@@ -203,7 +204,7 @@ def tfDataSetMaker(sigFileName, bgFileName, treeName, features,size, batch_size,
    return train_Iterator, val_Iterator, inputs, labels, handle
 
 
-def tfTrainDataSetMaker(sigFileName, bgFileName, treeName, features,size, batch_size, training_portion):
+def tf_traindataset_maker(sigFileName, bgFileName, treeName, features,size, batch_size, training_portion):
    # Load data from root trees into suitable format for sklearn analysis
    
    sigFile = uproot.open(sigFileName)
@@ -245,7 +246,7 @@ def tfTrainDataSetMaker(sigFileName, bgFileName, treeName, features,size, batch_
    
 ########################################################################
    
-def tfEvalDataSetMaker(fileName, treeName, features, datalabel=-1.):
+def tf_evaldataset_maker(fileName, treeName, features, datalabel=-1.):
    # Load data from root trees into suitable format for sklearn analysis
    
    evalFile = uproot.open(fileName)
@@ -275,7 +276,7 @@ def tfEvalDataSetMaker(fileName, treeName, features, datalabel=-1.):
 
 
 
-def tfSetFromCSV(fileName, features, trainportion, batch_size):
+def tf_set_from_csv(fileName, features, trainportion, batch_size):
    # Load data from root trees into suitable format for sklearn analysis
 
    dataset = pd.read_csv(fileName)   
@@ -290,10 +291,12 @@ def tfSetFromCSV(fileName, features, trainportion, batch_size):
    train_dataset = (tf.data.Dataset.from_tensor_slices((tf.cast(trainDF[features].values,tf.float32),tf.cast(trainDF['label'].values, tf.int32))))
    train_Batches = (train_dataset.take(len(trainDF)).repeat().batch(batch_size))
    train_Iterator = train_Batches.make_one_shot_iterator()
+   #train_Iterator = tf.compat.v1.data.make_one_shot_iterator(train_Batches)
    
    val_dataset = (tf.data.Dataset.from_tensor_slices((tf.cast(valDF[features].values,tf.float32),tf.cast(valDF['label'], tf.int32))))
    val_Batches = (val_dataset.take(len(valDF)).repeat().batch(len(valDF['label'].values))) 
    val_Iterator = val_Batches.make_one_shot_iterator()
+   #val_Iterator = tf.compat.v1.data.make_one_shot_iterator(val_Batches)
 
    handle = tf.placeholder(tf.string, shape=[])
    feedable_iterator = tf.data.Iterator.from_string_handle(handle, train_dataset.output_types, train_Batches.output_shapes)
@@ -301,7 +304,7 @@ def tfSetFromCSV(fileName, features, trainportion, batch_size):
 
    return train_Iterator, val_Iterator, inputs, labels, handle
 
-def tfEvalSetFromCSV(fileName, features):
+def tf_evalset_from_csv(fileName, features):
    # Load data from root trees into suitable format for sklearn analysis
 
    dataset = pd.read_csv(fileName)   
@@ -310,6 +313,7 @@ def tfEvalSetFromCSV(fileName, features):
    eval_dataset = (tf.data.Dataset.from_tensor_slices((tf.cast(dataset[features].values,tf.float32),tf.cast(dataset['label'], tf.int32))))
    eval_Batches = (eval_dataset.take(len(dataset)).repeat().batch(len(dataset))) 
    eval_Iterator = eval_Batches.make_one_shot_iterator()
+   #eval_Iterator = tf.compat.v1.data.make_one_shot_iterator(eval_Batches)
 
    handle = tf.placeholder(tf.string, shape=[])
    feedable_iterator = tf.data.Iterator.from_string_handle(handle, eval_dataset.output_types, eval_Batches.output_shapes)
