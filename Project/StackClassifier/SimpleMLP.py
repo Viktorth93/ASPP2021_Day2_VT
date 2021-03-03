@@ -7,9 +7,9 @@ import tensorflow_probability as tfp
 from SimpleModel import SimpleModel
 
 
-from rootInterfaces import pred_output_root
-from rootInterfaces import tf_set_from_csv
-from rootInterfaces import tf_evalset_from_csv
+from RootInterfaces import pred_output_root
+from RootInterfaces import tf_set_from_csv
+from RootInterfaces import tf_evalset_from_csv
 
 
 
@@ -29,6 +29,7 @@ features = ['BDTPred', 'MLPPred', 'kNNPred']
 
 def train_model(filename, features, saveflag):
     """ Train a neural network on stacked outputs of several other ML algorithms.
+
     Parameters
     ----------
     filename : str
@@ -41,6 +42,7 @@ def train_model(filename, features, saveflag):
     See Also
     --------
     apply_model
+
 
     """
     seed = 1121
@@ -188,5 +190,5 @@ def apply_model(csv_in_filename, features, save_to_csv=True,save_to_root=False, 
     if save_to_root : 
         pred_output_root(predictions, rootfilename, treename, outname)
          
-train_model(filename, features, saveflag)
+#train_model(filename, features, saveflag)
 #apply_model(csvfilename, features, csvfilename="StackedModelPreds.csv")

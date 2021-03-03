@@ -13,7 +13,7 @@ from array import array
 file_list = ["BDTPreds.csv", "MLPPreds.csv", "kNNPreds.csv"]
 
 def Stacker(file_list, include_signal=True, include_bg=True, outname="StackedPreds.csv"):
-     """ Builds combined dataframe from output of several models.
+     """ Builds combined dataframe from output of several models and outputs it to file.
 
      Parameters
      ----------
@@ -48,4 +48,4 @@ def Stacker(file_list, include_signal=True, include_bg=True, outname="StackedPre
 
 
 #Stacker(file_list, include_signal = False)
-Stacker(file_list)
+#Stacker(file_list)
