@@ -9,7 +9,7 @@ import tensorflow_probability as tfp
 class SimpleModel():
    
    def __init__(self, nFeatures, inseed, learn_rate):
-       """ Initialize placeholder for a simple ML model
+       """ Initialize placeholder for a simple ML model with some hyperparameters.
       
        Parameters
        ----------
@@ -103,6 +103,7 @@ class SimpleModel():
 
    def load_handwritten_model(self, handle, eval_Iterator, inputs):
       """ Loads and evaluates saved handwritten model.
+
       Parameters
       ----------
       handle : tf.placeholder(tf.string, shape=[])
