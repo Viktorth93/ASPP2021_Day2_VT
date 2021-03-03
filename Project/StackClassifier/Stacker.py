@@ -20,11 +20,19 @@ MLPSigFile = "MLPSigPreds.csv"
 kNNBGFile = "kNNBGPreds.csv"
 kNNSigFile = "kNNSigPreds.csv"
 
-def Stacker(BDTBGFile, BDTSigFile, MLPBGFile, MLPSigFile, kNNBGFile, kNNSigFile):
+bgFileList = ["BDTBGPreds.csv", "MLPBGPreds.csv", "kNNBGPreds.csv"]
+sigFileList = ["BDTSigPreds.csv", "MLPSigPreds.csv", "kNNSigPreds.csv"]
+
+#def Stacker(BDTBGFile, BDTSigFile, MLPBGFile, MLPSigFile, kNNBGFile, kNNSigFile):
+def Stacker(bgFileList, sigFileList):
      """ Builds combined dataframe from output of several models.
 
      Parameters
      ----------
+     bgFileList : list of str
+        List of names of files containing background input data.
+     sigFileList : list of str
+        List of names of files containing signal input data.
      BDTBGFile : str
         Name of file containing BDT predictions for background data.
      BDTSig : str
