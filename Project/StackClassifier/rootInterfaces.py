@@ -6,7 +6,32 @@ import tensorflow as tf
 import numpy as np
 
 def dataLoader(sigName, bgName, dataName, treeName, features, sig_size, bg_size):
-   # Load data from root trees into suitable format for sklearn analysis
+   """ Load data from root trees into pandas dataframes.
+
+   Reads root trees (a common data format in high energy and nuclear physics) and turns them into pandas dataframes for ease of use in machinelearning.
+
+   Parameters
+   ----------
+   sigName : str
+      Name of file containing signal data
+   bgName : str
+      Name of file containing background data
+   dataName : str
+      Name of file containing data to be evaluated by the model.
+   treeName : str
+      Name of tree within 
+
+   Returns
+   -------
+   trainDF : pandas.DataFrame
+      Dataframe containing training data set.
+   valDF : pandas.DataFrame
+      Dataframe containing validation data set.
+   dataDF : pandas.DataFrame
+      Dataframe containing data set to be classified.
+
+
+   """
    sigFile = uproot.open(sigName)
    bgFile = uproot.open(bgName)
    dataFile = uproot.open(dataName)

@@ -30,7 +30,21 @@ csvFileName = "StackedSigPreds.csv"
 features = ['BDTPred', 'MLPPred', 'kNNPred']
 
 def SimpleMLP(fileName, features, saveFlag):
-    
+    """ Train a neural network on stacked outputs of several other ML algorithms.
+    Parameters
+    ----------
+    fileName : str
+       Name of file containing stacked model outputs.
+    features : list of str
+       List of input features to use in the model.
+    saveFlag : bool
+       Flag that controls whether the model parameters should be saved or not.
+
+    See Also
+    --------
+    ApplyModel
+
+    """
     seed = 1121
     batchsize = 100
     trainportion = 0.75
@@ -114,6 +128,25 @@ def SimpleMLP(fileName, features, saveFlag):
 ########################################################################
         
 def ApplyModel(csvFileName, rootFileName, treeName, features):
+    """ Apply trained model to data.
+
+    Parameters
+    ----------
+    csvFileName : str
+       Name of file containing stacked outputs of different ML models.
+    rootFileName : str
+       Name of file containing full data.
+    treeName : str
+       Name of data Tree where predictions should be written.
+    features : list of str
+       List of data features used in model.
+
+    See Also
+    --------
+    SimpleMLP
+
+
+    """
     (eval_Iterator, inputs, labels, handle) = tfEvalSetFromCSV(csvFileName, features)
     seed = 1121
         # Construct classification network

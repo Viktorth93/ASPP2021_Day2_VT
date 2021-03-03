@@ -8,26 +8,74 @@ import tensorflow_probability as tfp
 class SimpleModel():
    
    def __init__(self, nFeatures, inseed, learn_rate):
-      self.numfeatures = nFeatures
-
-      self.seed = inseed
+       """ Initialize placeholder for a simple ML model
       
-      self.optimizer=tf.train.AdamOptimizer(learn_rate)
+       Parameters
+       ----------
+       nFeatures : int
+          Number of input features
+       inseed : float
+          Seed for setting random initial state of model parameters
+       learn_rate : float
+          Learning rate used in training the model.
+
+      
+      
+       """
+       self.numfeatures = nFeatures
+
+       self.seed = inseed
+      
+       self.optimizer=tf.train.AdamOptimizer(learn_rate)
       
       
 
    def KerasModel(self, inputs):
-      network = tf.keras.Sequential([
-        tf.keras.layers.Dense(128, activation=tf.nn.relu, input_shape=(self.numfeatures,)),
-        tf.keras.layers.Dense(64, activation=tf.nn.relu),
-        tf.keras.layers.Dense(2)
-      ])
+       """ Returns neural network model defined in keras 
+
+       Parameters
+       ----------
+       inputs : tf.data.Iterator
+          Tensor of input data
+
+       Returns
+       -------
+       tf.keras.Model
+            Tensorflow graph for neural network model.
+
+       See Also
+       --------
+       HandwrittenModel
+
+       """
+       network = tf.keras.Sequential([
+         tf.keras.layers.Dense(128, activation=tf.nn.relu, input_shape=(self.numfeatures,)),
+         tf.keras.layers.Dense(64, activation=tf.nn.relu),
+         tf.keras.layers.Dense(2)
+       ])
       
-      return network(inputs)
+       return network(inputs)
       
       
       
    def HandwrittenModel(self, inputs):
+      """ Returns tensorflow neural network model defined by hand. 
+      Parameters
+      ----------
+      inputs : tf.data.Iterator
+         Tensor of input data
+
+      Returns
+      -------
+      output_layer : tf.Tensor 
+            Tensorflow graph for handwritten neural network model.
+
+      See Also
+      --------
+      KerasModel
+      LoadHandwrittenModel
+
+      """
       activationf = tf.nn.relu
    
       initializer = tf.initializers.truncated_normal(0, 0.1 ,self.seed)
@@ -52,7 +100,21 @@ class SimpleModel():
       return output_layer
 
    def LoadHandwrittenModel(self, handle, eval_Iterator, inputs):
-      
+      """ Loads and evaluates saved handwritten model.
+      Parameters
+      ----------
+      handle : tf.placeholder(tf.string, shape=[])
+      eval_Iterator : tf.data.Iterator
+         Object defining the state of iterating over a dataset
+      inputs : tf.Tensor
+         Tensor of the input data.
+
+      Returns
+      -------
+      pred  
+         List of model predictions
+
+      """
       init = tf.group(tf.global_variables_initializer(),tf.local_variables_initializer() )
       with tf.Session() as sess:
          sess.run(init)
