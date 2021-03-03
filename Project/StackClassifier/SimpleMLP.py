@@ -1,48 +1,46 @@
 import numpy as np
 import pandas as pd
 import uproot
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import tensorflow_probability as tfp
 from SimpleModel import SimpleModel
 
 
-from rootInterfaces import predOutputRoot
-from rootInterfaces import tfSetFromCSV
-from rootInterfaces import tfEvalSetFromCSV
+from rootInterfaces import pred_output_root
+from rootInterfaces import tf_set_from_csv
+from rootInterfaces import tf_evalset_from_csv
 
 
 
-sigName = "Signal.root"
-fileName = "StackedPreds.csv"
+signame = "Signal.root"
+filename = "StackedPreds.csv"
 bgName = "BG.root"
 dataName = "Data.root"
-treeName = "PiPiee"
+treename = "PiPiee"
 evalName = "Signal.root"
 outputName = "Predicted.root"
-saveFLAG = True
-csvFileName = "StackedSigPreds.csv"
+saveflag = True
+csvfilename = "StackedSigPreds.csv"
 
 
-#features = ['pip_px', 'pip_py', 'pip_pz', 'pip_e', 'pim_px', 'pim_py', 
-#        'pim_pz','pim_e', 'ep_px', 'ep_py', 'ep_pz', 'ep_e', 'em_px', 
-#        'em_py', 'em_pz', 'em_e', 'g_px', 'g_py', 'g_pz', 'g_e'];
 
 features = ['BDTPred', 'MLPPred', 'kNNPred']
 
-def SimpleMLP(fileName, features, saveFlag):
+def train_model(filename, features, saveflag):
     """ Train a neural network on stacked outputs of several other ML algorithms.
     Parameters
     ----------
-    fileName : str
+    filename : str
        Name of file containing stacked model outputs.
     features : list of str
        List of input features to use in the model.
-    saveFlag : bool
+    saveflag : bool
        Flag that controls whether the model parameters should be saved or not.
 
     See Also
     --------
-    ApplyModel
+    apply_model
 
     """
     seed = 1121
@@ -50,7 +48,7 @@ def SimpleMLP(fileName, features, saveFlag):
     trainportion = 0.75
     size = 150000
 
-    (train_Iterator, val_Iterator, inputs, labels, handle)  = tfSetFromCSV(fileName, features, trainportion, batchsize)
+    (train_Iterator, val_Iterator, inputs, labels, handle)  = tf_set_from_csv(filename, features, trainportion, batchsize)
   
     
     # Construct classification network
@@ -60,7 +58,7 @@ def SimpleMLP(fileName, features, saveFlag):
     
     SM = SimpleModel(num_features, seed, learn_rate)
     
-    output_layer = SM.HandwrittenModel(inputs)
+    output_layer = SM.handwritten_model(inputs)
     
     #labels_distribution = tfd.Categorical(logits=output_layer)
     
@@ -117,37 +115,43 @@ def SimpleMLP(fileName, features, saveFlag):
         val_acc = np.sum(np.equal(pred_vals,label_vals))/float(len(pred_vals))
         print("Validation Accuracy: {:.3f}".format(val_acc))
         
-        #predOutputRoot(pred_vals, evalName, treeName, outputName)
+        #pred_output_root(pred_vals, evalName, treename, outputName)
 
 
                 
-        if saveFlag :        
+        if saveflag :        
             save_path = saver.save(sess, './model', global_step= 10000)
             print("Model saved in : %s" % save_path)
         
 ########################################################################
         
-def ApplyModel(csvFileName, rootFileName, treeName, features):
+def apply_model(csv_in_filename, features, save_to_csv=True,save_to_root=False, csv_out_filename="out.csv", rootfilename="data.root", treename="Tree"):
     """ Apply trained model to data.
 
     Parameters
     ----------
-    csvFileName : str
-       Name of file containing stacked outputs of different ML models.
-    rootFileName : str
-       Name of file containing full data.
-    treeName : str
-       Name of data Tree where predictions should be written.
+    csv_in_filename : str
+       Name of file containing input.
     features : list of str
        List of data features used in model.
+    save_to_csv : bool
+       True if output is to be written to csv file. Default is True.
+    csv_out_filename : str
+       Name of file where csv output is to be written. Default is out.csv. Only relevant if save_to_cvs is True.
+    save_to_root : bool
+       True if output is to be written to root file. Default is False.
+    rootfilename : str
+       Name of file containing full data where predictions are to be appended. Default is data.root. Only relevant if save_to_root is True.
+    treename : str
+       Name of data Tree where predictions should be written. Default is Tree. Only relevant if save_to_root is True.
 
     See Also
     --------
-    SimpleMLP
+    train_model
 
 
     """
-    (eval_Iterator, inputs, labels, handle) = tfEvalSetFromCSV(csvFileName, features)
+    (eval_Iterator, inputs, labels, handle) = tf_evalset_from_csv(csvfilename, features)
     seed = 1121
         # Construct classification network
     learn_rate = 0.001
@@ -156,9 +160,9 @@ def ApplyModel(csvFileName, rootFileName, treeName, features):
     
     SM = SimpleModel(num_features, seed, learn_rate)
     
-    outName = "Applied.root"
+    outname = "Applied.root"
     
-    #output_layer = SM.HandwrittenModel(inputs)
+    #output_layer = SM.handwritten_model(inputs)
     
     #predictions = tf.argmax(output_layer, axis=1)
        
@@ -171,7 +175,7 @@ def ApplyModel(csvFileName, rootFileName, treeName, features):
         
     
     
-    predictions = SM.LoadHandwrittenModel(handle, eval_Iterator, inputs)
+    predictions = SM.load_handwritten_model(handle, eval_Iterator, inputs)
     
     init = tf.group(tf.global_variables_initializer(),tf.local_variables_initializer() )
     with tf.Session() as sess:
@@ -179,9 +183,10 @@ def ApplyModel(csvFileName, rootFileName, treeName, features):
         eval_handle = sess.run(eval_Iterator.string_handle())
         label_vals = sess.run(labels, feed_dict={handle: eval_handle})
        
-    #pred_DF.to_csv("MLPPreds.csv",index=False)
-     
-    predOutputRoot(predictions, rootFileName, treeName, outName)
+    if save_to_csv :
+        pred_DF.to_csv(csvfilename,index=False)
+    if save_to_root : 
+        pred_output_root(predictions, rootfilename, treename, outname)
          
-#SimpleMLP(fileName, features, saveFLAG)
-ApplyModel(csvFileName,sigName, treeName, features)
+train_model(filename, features, saveflag)
+#apply_model(csvfilename, features, csvfilename="StackedModelPreds.csv")

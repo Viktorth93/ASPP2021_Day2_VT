@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import uproot
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import tensorflow_probability as tfp
 
 
@@ -30,7 +31,7 @@ class SimpleModel():
       
       
 
-   def KerasModel(self, inputs):
+   def keras_model(self, inputs):
        """ Returns neural network model defined in keras 
 
        Parameters
@@ -45,7 +46,7 @@ class SimpleModel():
 
        See Also
        --------
-       HandwrittenModel
+       handwritten_model
 
        """
        network = tf.keras.Sequential([
@@ -58,7 +59,7 @@ class SimpleModel():
       
       
       
-   def HandwrittenModel(self, inputs):
+   def handwritten_model(self, inputs):
       """ Returns tensorflow neural network model defined by hand. 
       Parameters
       ----------
@@ -72,8 +73,8 @@ class SimpleModel():
 
       See Also
       --------
-      KerasModel
-      LoadHandwrittenModel
+      keras_model
+      load_handwritten_model
 
       """
       activationf = tf.nn.relu
@@ -82,7 +83,8 @@ class SimpleModel():
    
       num_hid1 = self.numfeatures*10
       #num_hid1 = 36*4
-      num_hid2 = num_hid1/2
+      #num_hid2 = num_hid1/2.
+      num_hid2 = 15
       num_out = 2
    
       w1 = tf.Variable(initializer([self.numfeatures, num_hid1]), dtype=tf.float32, name='w1')
@@ -99,7 +101,7 @@ class SimpleModel():
       
       return output_layer
 
-   def LoadHandwrittenModel(self, handle, eval_Iterator, inputs):
+   def load_handwritten_model(self, handle, eval_Iterator, inputs):
       """ Loads and evaluates saved handwritten model.
       Parameters
       ----------
