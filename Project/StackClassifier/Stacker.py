@@ -1,6 +1,5 @@
 import uproot
 import pandas as pd
-#import ROOT
 import numpy
 import tensorflow as tf
 from sklearn.ensemble import RandomForestClassifier
@@ -9,20 +8,10 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from array import array
 
-#from rootInterfaces import predOutputRoot
-#from rootInterfaces import dataLoader
 
-
-BDTBGFile = "BDTBGPreds.csv"
-BDTSigFile = "BDTSigPreds.csv"
-MLPBGFile = "MLPBGPreds.csv"
-MLPSigFile = "MLPSigPreds.csv"
-kNNBGFile = "kNNBGPreds.csv"
-kNNSigFile = "kNNSigPreds.csv"
 
 fileList = ["BDTPreds.csv", "MLPPreds.csv", "kNNPreds.csv"]
 
-#def Stacker(BDTBGFile, BDTSigFile, MLPBGFile, MLPSigFile, kNNBGFile, kNNSigFile):
 def Stacker(fileList, includeSignal=True, includeBG=True, outName="StackedPreds.csv"):
      """ Builds combined dataframe from output of several models.
 
