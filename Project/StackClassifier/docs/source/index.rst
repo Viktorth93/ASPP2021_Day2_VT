@@ -14,8 +14,8 @@ Welcome to StackClassifier's documentation!
 SimpleMLP
 ===========
 
-.. automodule:: SimpleMLP
-   :members:
+#.. automodule:: SimpleMLP
+#   :members:
 
 ==============
 RootInterfaces
@@ -23,8 +23,8 @@ RootInterfaces
 
 Functions for loading data from the root format commonly used in high energy physics into pandas or tensorflow formats.
 
-.. automodule:: RootInterfaces
-   :members:
+#.. automodule:: RootInterfaces
+#   :members:
 
 =========
 Stacker

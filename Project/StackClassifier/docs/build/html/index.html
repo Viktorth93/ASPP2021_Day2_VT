@@ -40,99 +40,16 @@
 <h1>Welcome to StackClassifier’s documentation!<a class="headerlink" href="#welcome-to-stackclassifier-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="module-SimpleMLP">
-<span id="simplemlp"></span><h2>SimpleMLP<a class="headerlink" href="#module-SimpleMLP" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="SimpleMLP.apply_model">
-<code class="sig-prename descclassname"><span class="pre">SimpleMLP.</span></code><code class="sig-name descname"><span class="pre">apply_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_in_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to_csv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_out_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'out.csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rootfilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data.root'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleMLP.apply_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply trained model to data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>csv_in_filename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing input.</p>
-</dd>
-<dt><strong>features</strong><span class="classifier">list of str</span></dt><dd><p>List of data features used in model.</p>
-</dd>
-<dt><strong>save_to_csv</strong><span class="classifier">bool</span></dt><dd><p>True if output is to be written to csv file. Default is True.</p>
-</dd>
-<dt><strong>csv_out_filename</strong><span class="classifier">str</span></dt><dd><p>Name of file where csv output is to be written. Default is out.csv. Only relevant if save_to_cvs is True.</p>
-</dd>
-<dt><strong>save_to_root</strong><span class="classifier">bool</span></dt><dd><p>True if output is to be written to root file. Default is False.</p>
-</dd>
-<dt><strong>rootfilename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing full data where predictions are to be appended. Default is data.root. Only relevant if save_to_root is True.</p>
-</dd>
-<dt><strong>treename</strong><span class="classifier">str</span></dt><dd><p>Name of data Tree where predictions should be written. Default is Tree. Only relevant if save_to_root is True.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleMLP.train_model" title="SimpleMLP.train_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="SimpleMLP.train_model">
-<code class="sig-prename descclassname"><span class="pre">SimpleMLP.</span></code><code class="sig-name descname"><span class="pre">train_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveflag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleMLP.train_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Train a neural network on stacked outputs of several other ML algorithms.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing stacked model outputs.</p>
-</dd>
-<dt><strong>features</strong><span class="classifier">list of str</span></dt><dd><p>List of input features to use in the model.</p>
-</dd>
-<dt><strong>saveflag</strong><span class="classifier">bool</span></dt><dd><p>Flag that controls whether the model parameters should be saved or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleMLP.apply_model" title="SimpleMLP.apply_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
+<div class="section" id="simplemlp">
+<h2>SimpleMLP<a class="headerlink" href="#simplemlp" title="Permalink to this headline">¶</a></h2>
+<p>#.. automodule:: SimpleMLP
+#   :members:</p>
 </div>
 <div class="section" id="rootinterfaces">
 <h2>RootInterfaces<a class="headerlink" href="#rootinterfaces" title="Permalink to this headline">¶</a></h2>
 <p>Functions for loading data from the root format commonly used in high energy physics into pandas or tensorflow formats.</p>
-<span class="target" id="module-RootInterfaces"></span><dl class="py function">
-<dt id="RootInterfaces.data_loader">
-<code class="sig-prename descclassname"><span class="pre">RootInterfaces.</span></code><code class="sig-name descname"><span class="pre">data_loader</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RootInterfaces.data_loader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load data from root trees into pandas dataframes.</p>
-<p>Reads root trees (a common data format in high energy and nuclear physics) and turns them into pandas dataframes for ease of use in machinelearning.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sigName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing signal data</p>
-</dd>
-<dt><strong>bgName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing background data</p>
-</dd>
-<dt><strong>dataName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing data to be evaluated by the model.</p>
-</dd>
-<dt><strong>treeName</strong><span class="classifier">str</span></dt><dd><p>Name of tree within</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>trainDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing training data set.</p>
-</dd>
-<dt><strong>valDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing validation data set.</p>
-</dd>
-<dt><strong>dataDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing data set to be classified.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
+<p>#.. automodule:: RootInterfaces
+#   :members:</p>
 </div>
 <div class="section" id="module-Stacker">
 <span id="stacker"></span><h2>Stacker<a class="headerlink" href="#module-Stacker" title="Permalink to this headline">¶</a></h2>
@@ -304,7 +221,7 @@ inputs : tf.data.Iterator</p>
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to StackClassifier’s documentation!</a><ul>
-<li><a class="reference internal" href="#module-SimpleMLP">SimpleMLP</a></li>
+<li><a class="reference internal" href="#simplemlp">SimpleMLP</a></li>
 <li><a class="reference internal" href="#rootinterfaces">RootInterfaces</a></li>
 <li><a class="reference internal" href="#module-Stacker">Stacker</a></li>
 <li><a class="reference internal" href="#simplemodel">SimpleModel</a></li>
