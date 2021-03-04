@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+setup.cfg
+StackClassifier/RootInterfaces.py
+StackClassifier/SimpleMLP.py
+StackClassifier/SimpleModel.py
+StackClassifier/Stacker.py
+StackClassifier/__init__.py
+stack_classifier_Viktorth93.egg-info/PKG-INFO
+stack_classifier_Viktorth93.egg-info/SOURCES.txt
+stack_classifier_Viktorth93.egg-info/dependency_links.txt
+stack_classifier_Viktorth93.egg-info/top_level.txt

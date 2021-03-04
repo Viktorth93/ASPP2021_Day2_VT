@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: stack-classifier-Viktorth93
+Version: 0.0.1
+Summary: Package that builds a dataset from other datasets and trains a simple model.
+Home-page: https://github.com/Viktorth93/ASPP2021_VT/tree/master/Project
+Author: Viktor Thore
+Author-email: viktor.thoren@physics.uu.se
+License: UNKNOWN
+Description: # Programming Project
+        
+        For my programming project I intended to improve upon a stacking classifier that combines the output of different machine learning algorithms to make more accurate predictions. My plan is to package the code in a neater, more self-contained way and improve the documentation. I also want to improve the user interface, so that the model can more easily be applied to generic input data.
+        
+        
+        Link to read the docs documentation page: https://aspp2021-vt.readthedocs.io/en/latest/index.html
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
