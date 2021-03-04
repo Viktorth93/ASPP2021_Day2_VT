@@ -23,9 +23,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">StackClassifier 2021-03-03 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Welcome to StackClassifier’s documentation!</a></li> 
       </ul>
@@ -40,249 +37,19 @@
 <h1>Welcome to StackClassifier’s documentation!<a class="headerlink" href="#welcome-to-stackclassifier-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="module-SimpleMLP">
-<span id="simplemlp"></span><h2>SimpleMLP<a class="headerlink" href="#module-SimpleMLP" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="SimpleMLP.apply_model">
-<code class="sig-prename descclassname"><span class="pre">SimpleMLP.</span></code><code class="sig-name descname"><span class="pre">apply_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_in_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to_csv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_out_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'out.csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rootfilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data.root'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Tree'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleMLP.apply_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply trained model to data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>csv_in_filename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing input.</p>
-</dd>
-<dt><strong>features</strong><span class="classifier">list of str</span></dt><dd><p>List of data features used in model.</p>
-</dd>
-<dt><strong>save_to_csv</strong><span class="classifier">bool</span></dt><dd><p>True if output is to be written to csv file. Default is True.</p>
-</dd>
-<dt><strong>csv_out_filename</strong><span class="classifier">str</span></dt><dd><p>Name of file where csv output is to be written. Default is out.csv. Only relevant if save_to_cvs is True.</p>
-</dd>
-<dt><strong>save_to_root</strong><span class="classifier">bool</span></dt><dd><p>True if output is to be written to root file. Default is False.</p>
-</dd>
-<dt><strong>rootfilename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing full data where predictions are to be appended. Default is data.root. Only relevant if save_to_root is True.</p>
-</dd>
-<dt><strong>treename</strong><span class="classifier">str</span></dt><dd><p>Name of data Tree where predictions should be written. Default is Tree. Only relevant if save_to_root is True.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleMLP.train_model" title="SimpleMLP.train_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="SimpleMLP.train_model">
-<code class="sig-prename descclassname"><span class="pre">SimpleMLP.</span></code><code class="sig-name descname"><span class="pre">train_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveflag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleMLP.train_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Train a neural network on stacked outputs of several other ML algorithms.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Name of file containing stacked model outputs.</p>
-</dd>
-<dt><strong>features</strong><span class="classifier">list of str</span></dt><dd><p>List of input features to use in the model.</p>
-</dd>
-<dt><strong>saveflag</strong><span class="classifier">bool</span></dt><dd><p>Flag that controls whether the model parameters should be saved or not.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleMLP.apply_model" title="SimpleMLP.apply_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
+<div class="section" id="simplemlp">
+<h2>SimpleMLP<a class="headerlink" href="#simplemlp" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="rootinterfaces">
 <h2>RootInterfaces<a class="headerlink" href="#rootinterfaces" title="Permalink to this headline">¶</a></h2>
 <p>Functions for loading data from the root format commonly used in high energy physics into pandas or tensorflow formats.</p>
-<span class="target" id="module-RootInterfaces"></span><dl class="py function">
-<dt id="RootInterfaces.data_loader">
-<code class="sig-prename descclassname"><span class="pre">RootInterfaces.</span></code><code class="sig-name descname"><span class="pre">data_loader</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RootInterfaces.data_loader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load data from root trees into pandas dataframes.</p>
-<p>Reads root trees (a common data format in high energy and nuclear physics) and turns them into pandas dataframes for ease of use in machinelearning.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sigName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing signal data</p>
-</dd>
-<dt><strong>bgName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing background data</p>
-</dd>
-<dt><strong>dataName</strong><span class="classifier">str</span></dt><dd><p>Name of file containing data to be evaluated by the model.</p>
-</dd>
-<dt><strong>treeName</strong><span class="classifier">str</span></dt><dd><p>Name of tree within</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>trainDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing training data set.</p>
-</dd>
-<dt><strong>valDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing validation data set.</p>
-</dd>
-<dt><strong>dataDF</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe containing data set to be classified.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
-<div class="section" id="module-Stacker">
-<span id="stacker"></span><h2>Stacker<a class="headerlink" href="#module-Stacker" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="Stacker.Stacker">
-<code class="sig-prename descclassname"><span class="pre">Stacker.</span></code><code class="sig-name descname"><span class="pre">Stacker</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_signal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'StackedPreds.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Stacker.Stacker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds combined dataframe from output of several models and outputs it to file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>file_list</strong><span class="classifier">list of str</span></dt><dd><p>List of names of files containing input data.</p>
-</dd>
-<dt><strong>include_signal</strong><span class="classifier">bool</span></dt><dd><p>Controls whether signal events are included in output dataframe. Default is true/yes.</p>
-</dd>
-<dt><strong>include_bg</strong><span class="classifier">bool</span></dt><dd><p>Controls whether bg events are included in output dataframe. Default is true/yes.</p>
-</dd>
-<dt><strong>outname</strong><span class="classifier">str</span></dt><dd><p>Name of output file. Default is StackedPreds.csv</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="stacker">
+<h2>Stacker<a class="headerlink" href="#stacker" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="simplemodel">
 <h2>SimpleModel<a class="headerlink" href="#simplemodel" title="Permalink to this headline">¶</a></h2>
 <p>Class for setting up machine learning modules.</p>
-<span class="target" id="module-SimpleModel"></span><dl class="py class">
-<dt id="SimpleModel.SimpleModel">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">SimpleModel.</span></code><code class="sig-name descname"><span class="pre">SimpleModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nFeatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inseed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learn_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleModel.SimpleModel" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#SimpleModel.SimpleModel.handwritten_model" title="SimpleModel.SimpleModel.handwritten_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">handwritten_model</span></code></a>(inputs)</p></td>
-<td><p>Returns tensorflow neural network model defined by hand. Parameters ———- inputs : tf.data.Iterator    Tensor of input data.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#SimpleModel.SimpleModel.keras_model" title="SimpleModel.SimpleModel.keras_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keras_model</span></code></a>(inputs)</p></td>
-<td><p>Returns neural network model defined in keras</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#SimpleModel.SimpleModel.load_handwritten_model" title="SimpleModel.SimpleModel.load_handwritten_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_handwritten_model</span></code></a>(handle, …)</p></td>
-<td><p>Loads and evaluates saved handwritten model.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt id="SimpleModel.SimpleModel.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nFeatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inseed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learn_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleModel.SimpleModel.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize placeholder for a simple ML model with some hyperparameters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>nFeatures</strong><span class="classifier">int</span></dt><dd><p>Number of input features</p>
-</dd>
-<dt><strong>inseed</strong><span class="classifier">float</span></dt><dd><p>Seed for setting random initial state of model parameters</p>
-</dd>
-<dt><strong>learn_rate</strong><span class="classifier">float</span></dt><dd><p>Learning rate used in training the model.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="SimpleModel.SimpleModel.__weakref__">
-<code class="sig-name descname"><span class="pre">__weakref__</span></code><a class="headerlink" href="#SimpleModel.SimpleModel.__weakref__" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of weak references to the object (if defined)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="SimpleModel.SimpleModel.handwritten_model">
-<code class="sig-name descname"><span class="pre">handwritten_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleModel.SimpleModel.handwritten_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns tensorflow neural network model defined by hand. 
-Parameters
-———-
-inputs : tf.data.Iterator</p>
-<blockquote>
-<div><p>Tensor of input data</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>output_layer</strong><span class="classifier">tf.Tensor</span></dt><dd><p>Tensorflow graph for handwritten neural network model.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleModel.SimpleModel.keras_model" title="SimpleModel.SimpleModel.keras_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keras_model</span></code></a></dt><dd></dd>
-<dt><a class="reference internal" href="#SimpleModel.SimpleModel.load_handwritten_model" title="SimpleModel.SimpleModel.load_handwritten_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_handwritten_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="SimpleModel.SimpleModel.keras_model">
-<code class="sig-name descname"><span class="pre">keras_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleModel.SimpleModel.keras_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns neural network model defined in keras</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>inputs</strong><span class="classifier">tf.data.Iterator</span></dt><dd><p>Tensor of input data</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>tf.keras.Model</dt><dd><p>Tensorflow graph for neural network model.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#SimpleModel.SimpleModel.handwritten_model" title="SimpleModel.SimpleModel.handwritten_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">handwritten_model</span></code></a></dt><dd></dd>
-</dl>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="SimpleModel.SimpleModel.load_handwritten_model">
-<code class="sig-name descname"><span class="pre">load_handwritten_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_Iterator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleModel.SimpleModel.load_handwritten_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads and evaluates saved handwritten model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>handle</strong><span class="classifier">tf.placeholder(tf.string, shape=[])</span></dt><dd></dd>
-<dt><strong>eval_Iterator</strong><span class="classifier">tf.data.Iterator</span></dt><dd><p>Object defining the state of iterating over a dataset</p>
-</dd>
-<dt><strong>inputs</strong><span class="classifier">tf.Tensor</span></dt><dd><p>Tensor of the input data.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>pred</dt><dd><p>List of model predictions</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -304,9 +71,9 @@ inputs : tf.data.Iterator</p>
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to StackClassifier’s documentation!</a><ul>
-<li><a class="reference internal" href="#module-SimpleMLP">SimpleMLP</a></li>
+<li><a class="reference internal" href="#simplemlp">SimpleMLP</a></li>
 <li><a class="reference internal" href="#rootinterfaces">RootInterfaces</a></li>
-<li><a class="reference internal" href="#module-Stacker">Stacker</a></li>
+<li><a class="reference internal" href="#stacker">Stacker</a></li>
 <li><a class="reference internal" href="#simplemodel">SimpleModel</a></li>
 </ul>
 </li>
@@ -340,9 +107,6 @@ inputs : tf.data.Iterator</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">StackClassifier 2021-03-03 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Welcome to StackClassifier’s documentation!</a></li> 
       </ul>
