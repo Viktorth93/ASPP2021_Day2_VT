@@ -2,3 +2,4 @@ numpydoc
 numpy
 uproot
 pandas
+tensorflow
