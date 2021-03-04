@@ -4,3 +4,5 @@ For my programming project I intended to improve upon a stacking classifier that
 
 
 Link to read the docs documentation page: https://aspp2021-vt.readthedocs.io/en/latest/index.html
+
+Link to project on testpypi: https://test.pypi.org/project/stack-classifier-Viktorth93/
