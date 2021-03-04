@@ -5,5 +5,4 @@ pandas
 tensorflow
 tensorflow_probability
 sklearn
-rootpy
 
