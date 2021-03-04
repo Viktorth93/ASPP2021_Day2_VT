@@ -246,10 +246,10 @@ def tf_traindataset_maker(sigFileName, bgFileName, treeName, features,size, batc
    
 ########################################################################
    
-def tf_evaldataset_maker(fileName, treeName, features, datalabel=-1.):
+def tf_evaldataset_maker(filename, treeName, features, datalabel=-1.):
    # Load data from root trees into suitable format for sklearn analysis
    
-   evalFile = uproot.open(fileName)
+   evalFile = uproot.open(filename)
 
 
    evalTree = evalFile[treeName]
@@ -276,10 +276,40 @@ def tf_evaldataset_maker(fileName, treeName, features, datalabel=-1.):
 
 
 
-def tf_set_from_csv(fileName, features, trainportion, batch_size):
-   # Load data from root trees into suitable format for sklearn analysis
+def tf_set_from_csv(filename, features, trainportion, batch_size):
+   """ Make tensorflow datasets from csv file.
 
-   dataset = pd.read_csv(fileName)   
+   Parameters
+   ----------
+   filename : str
+      Name of file containing csv data.
+   features : list of str
+      List of features to include in dataset.
+   trainportion : float
+      Percentage of data to include in training set.
+   bath_size : int
+      Number of events per training batch.
+
+
+   Returns
+   -------
+   train_Iterator : tf.data.Iterator
+      Object defining the state of iteration over training data.
+   val_Iterator : tf.data.Iterator
+      Object defining the state of iteration over validation data.
+   inputs : tf.Tensor
+      Tensor of input features.
+   labels : tf.Tensor
+      Tensor of input labels.
+   handle : tf.placeholder(tf.string, shape=[])
+      
+   See Also
+   --------
+   tf_evalset_from_csv
+   
+
+   """
+   dataset = pd.read_csv(filename)   
    dataset = dataset.sample(frac=1).reset_index(drop=True)
 
    # Create Training set
@@ -304,10 +334,34 @@ def tf_set_from_csv(fileName, features, trainportion, batch_size):
 
    return train_Iterator, val_Iterator, inputs, labels, handle
 
-def tf_evalset_from_csv(fileName, features):
-   # Load data from root trees into suitable format for sklearn analysis
+def tf_evalset_from_csv(filename, features):
+   """ Make tensorflow evaluation dataset from csv file.
 
-   dataset = pd.read_csv(fileName)   
+   Parameters
+   ----------
+   filename : str
+      Name of file containing csv data.
+   features : list of str
+      List of features to include in dataset.
+
+   Returns
+   -------
+   eval_Iterator : tf.data.Iterator
+      Object defining the state of iteration over data.
+   inputs : tf.Tensor
+      Tensor of input features.
+   labels : tf.Tensor
+      Tensor of input labels.
+   handle : tf.placeholder(tf.string, shape=[])
+      
+   See Also
+   --------
+   tf_set_from_csv
+   
+
+   """
+
+   dataset = pd.read_csv(filename)   
 
    # Create Eval set
    eval_dataset = (tf.data.Dataset.from_tensor_slices((tf.cast(dataset[features].values,tf.float32),tf.cast(dataset['label'], tf.int32))))
