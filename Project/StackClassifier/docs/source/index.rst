@@ -37,7 +37,7 @@ Stacker
 SimpleModel
 ===========
 
-Class for setting up machine learning modules.
+Class for setting up machine learning models.
 
 .. automodule:: SimpleModel
    :members:
