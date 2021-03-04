@@ -3,3 +3,6 @@ numpy
 uproot
 pandas
 tensorflow
+tensorflow_probability
+sklearn
+
