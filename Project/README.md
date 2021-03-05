@@ -8,7 +8,7 @@ For my programming project I intended to improve upon a stacking classifier that
 # What I did:
 
 
-* Improved data reading interface of the Stacker module. One function now fulfills all necessary functionality.
+* Improved data reading interface of the Stacker module. One function now fulfills all necessary functionality (compared to three previously).
 
 * Changed function and variable names to be consistent with PEP8 standard.
 
